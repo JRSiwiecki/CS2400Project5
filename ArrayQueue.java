@@ -126,5 +126,29 @@ public class ArrayQueue<T> implements QueueInterface<T>
 			integrityOK = true;
 		}
 	}
-
+	
+	/**
+     * Throws an exception if this object is not initialized. 
+     */
+    private void checkIntegrity()
+    {
+        if (!integrityOK)
+        {
+            throw new SecurityException("ArrayQueue object is corrupt.");
+        }
+    }
+    
+    /**
+     * Checks capacity of the queue to make sure it is larger than the array should be.
+     * @param capacity The capacity to be checked.
+     */
+    private void checkCapacity(int capacity)
+    {
+        if (capacity > MAX_CAPACITY)
+        {
+            throw new IllegalStateException("Attempt to create a queue whose " +
+                                        "capacity exceeds allowed " +
+                                        "maximum of " + MAX_CAPACITY);
+        }
+    }
 }
