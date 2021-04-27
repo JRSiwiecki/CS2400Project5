@@ -61,22 +61,40 @@ public class ArrayQueue<T> implements QueueInterface<T>
 	@Override
 	public T getFront() 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		checkIntegrity();
+		
+		if (isEmpty())
+			throw new EmptyQueueException();
+		
+		else
+			return queue[frontIndex];
 	}
 
 	@Override
 	public boolean isEmpty() 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		checkIntegrity();
+		return frontIndex == ((backIndex + 1) % queue.length);
 	}
 
 	@Override
 	public void clear() 
 	{
-		// TODO Auto-generated method stub
+		checkIntegrity();
 		
+		if (!isEmpty())
+		{
+			// Deallocates only the used portion.
+			for (int index = frontIndex; index != backIndex; index = (index + 1) % queue.length)
+			{
+				queue[index] = null;
+			}
+			
+			queue[backIndex] = null;
+		}
+		
+		frontIndex = 0;
+		backIndex = queue.length - 1;
 	}
 	
 	/**
