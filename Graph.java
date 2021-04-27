@@ -79,4 +79,14 @@ public class Graph<E>
 	{
 		edges[source][target] = false;
 	}
+	
+	/**
+	 * Change the label of a vertex of this Graph.
+	 * @param vertex The vertex.
+	 * @param newLabel The new label to be set to the vertex.
+	 */
+	public void setLabel(int vertex, E newLabel)
+	{
+		labels[vertex] = newLabel;
+	}
 }
