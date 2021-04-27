@@ -69,4 +69,14 @@ public class Graph<E>
 		
 		return answer;
 	}
+	
+	/**
+	 * Remove an edge.
+	 * @param source The source.
+	 * @param target The target.
+	 */
+	public void removeEdge(int source, int target)
+	{
+		edges[source][target] = false;
+	}
 }
