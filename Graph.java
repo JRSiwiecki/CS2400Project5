@@ -40,4 +40,33 @@ public class Graph<E>
 	{
 		edges[source][target] = true;
 	}
+	
+	/**
+	 * Obtain a list of neighbors of a specified vertex of this Graph.
+	 * @param vertex The vertex.
+	 * @return The list of neighbors.
+	 */
+	public int[] neighbors(int vertex)
+	{
+		int i;
+		int count = 0;
+		int[] answer;
+		
+		for (i = 0; i < labels.length; i++)
+		{
+			if (edges[vertex][i])
+				count++;
+		}
+		
+		answer = new int[count];
+		count = 0;
+		
+		for (i = 0; i < labels.length; i++)
+		{
+			if (edges[vertex][i])
+				answer[count++] = i;
+		}
+		
+		return answer;
+	}
 }
