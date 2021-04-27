@@ -42,7 +42,7 @@ public class ArrayQueue<T> implements QueueInterface<T>
 	}
 
 	@Override
-	public T dequeue() 
+	public T dequeue() throws EmptyQueueException 
 	{
 		checkIntegrity();
 		
@@ -59,7 +59,7 @@ public class ArrayQueue<T> implements QueueInterface<T>
 	}
 
 	@Override
-	public T getFront() 
+	public T getFront() throws EmptyQueueException 
 	{
 		checkIntegrity();
 		
