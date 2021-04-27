@@ -30,4 +30,14 @@ public class Graph<E>
 	{
 		return edges[source][target];
 	}
+	
+	/**
+	 * Add an edge. 
+	 * @param source The source.
+	 * @param target The target.
+	 */
+	public void addEdge(int source, int target)
+	{
+		edges[source][target] = true;
+	}
 }
