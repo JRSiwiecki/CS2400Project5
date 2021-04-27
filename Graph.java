@@ -89,4 +89,13 @@ public class Graph<E>
 	{
 		labels[vertex] = newLabel;
 	}
+	
+	/**
+	 * Accessor method to determine the number of vertices in this Graph.
+	 * @return The number of labels in the graph.
+	 */
+	public int size()
+	{
+		return labels.length;
+	}
 }
