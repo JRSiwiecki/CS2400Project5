@@ -19,4 +19,15 @@ public class Graph<E>
 	{
 		return labels[vertex];
 	}
+	
+	/**
+	 * Test whether an edge exists
+	 * @param source The source.
+	 * @param target The target.
+	 * @return
+	 */
+	public boolean isEdges(int source, int target)
+	{
+		return edges[source][target];
+	}
 }
