@@ -12,11 +12,11 @@ public class Graph
  
     // Constructor
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	Graph(int v)
+	Graph(int vertex)
     {
-        vertices = v;
-        list = new LinkedList[v];
-        for (int i = 0; i < v; ++i)
+        vertices = vertex;
+        list = new LinkedList[vertex];
+        for (int i = 0; i < vertex; ++i)
             list[i] = new LinkedList();
     }
  
