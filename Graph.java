@@ -1,101 +1,125 @@
-public class Graph<E>
+import java.util.*;
+ 
+/**
+ * A graph depicted with an adjacency list.
+ * @author Joseph
+ *
+ */
+public class Graph
 {
-	private boolean[][] edges; // edges[i][j] is true if thehre is a vertex from i to j
-	private E[] labels; // labels[i] contains the label for vertex i
-	
-	@SuppressWarnings("unchecked")
-	public Graph(int n)
-	{
-		edges = new boolean[n][n]; // All values initially false
-		labels = (E[]) new Object[n]; // All values initially null
-	}
-	
-	/**
-	 * Accessor method to get the label of a vertex of this Graph
-	 * @param vertex The vertex.
-	 * @return The label of the vertex.
-	 */
-	public E getLabel(int vertex)
-	{
-		return labels[vertex];
-	}
-	
-	/**
-	 * Test whether an edge exists
-	 * @param source The source.
-	 * @param target The target.
-	 * @return
-	 */
-	public boolean isEdges(int source, int target)
-	{
-		return edges[source][target];
-	}
-	
-	/**
-	 * Add an edge. 
-	 * @param source The source.
-	 * @param target The target.
-	 */
-	public void addEdge(int source, int target)
-	{
-		edges[source][target] = true;
-	}
-	
-	/**
-	 * Obtain a list of neighbors of a specified vertex of this Graph.
-	 * @param vertex The vertex.
-	 * @return The list of neighbors.
-	 */
-	public int[] neighbors(int vertex)
-	{
-		int i;
-		int count = 0;
-		int[] answer;
-		
-		for (i = 0; i < labels.length; i++)
-		{
-			if (edges[vertex][i])
-				count++;
-		}
-		
-		answer = new int[count];
-		count = 0;
-		
-		for (i = 0; i < labels.length; i++)
-		{
-			if (edges[vertex][i])
-				answer[count++] = i;
-		}
-		
-		return answer;
-	}
-	
-	/**
-	 * Remove an edge.
-	 * @param source The source.
-	 * @param target The target.
-	 */
-	public void removeEdge(int source, int target)
-	{
-		edges[source][target] = false;
-	}
-	
-	/**
-	 * Change the label of a vertex of this Graph.
-	 * @param vertex The vertex.
-	 * @param newLabel The new label to be set to the vertex.
-	 */
-	public void setLabel(int vertex, E newLabel)
-	{
-		labels[vertex] = newLabel;
-	}
-	
-	/**
-	 * Accessor method to determine the number of vertices in this Graph.
-	 * @return The number of labels in the graph.
-	 */
-	public int size()
-	{
-		return labels.length;
-	}
+    private int vertices;   // Number of vertices
+    private LinkedList<Integer> list[]; // Adjacency List
+ 
+    // Constructor
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	Graph(int v)
+    {
+        vertices = v;
+        list = new LinkedList[v];
+        for (int i = 0; i < v; ++i)
+            list[i] = new LinkedList();
+    }
+ 
+    /**
+     * Adds an edge between two vertices.
+     * @param source
+     * @param target
+     */
+    public void addEdge(int source,int target)
+    {
+        list[source].add(target);
+    }
+ 
+    /**
+     * Prints BreadthFirstTraversal traversal
+     * @param source The given source/starting point.
+     */
+    public void BreadthFirstTraversal(int source)
+    {
+        // Mark all the vertices as not visited/false.
+        boolean visited[] = new boolean[vertices];
+ 
+        // Create a queue for BreadthFirstTraversal
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+ 
+        // Mark the current node as visited and enqueue it
+        visited[source] = true;
+        queue.add(source);
+ 
+        while (queue.size() != 0)
+        {
+            // Dequeue a vertex from the queue and print it.
+            source = queue.poll();
+            System.out.print(source +" ");
+ 
+            // Get all adjacent vertices of the dequeued vertex source.
+            // If the adjacent vertex has not been visited, then mark it as
+            // visited and enqueue it.
+            Iterator<Integer> iterator = list[source].listIterator();
+            
+            while (iterator.hasNext())
+            {
+                int node = iterator.next();
+                
+                if (!visited[node])
+                {
+                    visited[node] = true;
+                    queue.add(node);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Performs a depth first traversal of a graph from the source.
+     * @param source The source by which to begin the depth first traversal.
+     */
+    public void DepthFirstTraversal(int source)
+    {
+        // Initially mark all vertices as not visited/false.
+        Vector<Boolean> visited = new Vector<Boolean>(vertices);
+       
+        for (int i = 0; i < vertices; i++)
+        {
+        	visited.add(false);
+        }
+            
+        // Create a stack for depth first traversal.
+        Stack<Integer> stack = new Stack<>();
+         
+        // Push the current source node.
+        stack.push(source);
+         
+        while(stack.empty() == false)
+        {
+            // Pop the vertex from stack and print it.
+        	source = stack.peek();
+            stack.pop();
+             
+            // If the stack contains the same vertex twice, then
+            // we need to print the only what was popped
+            // if it is not visited.
+            if(visited.get(source) == false)
+            {
+                System.out.print(source + " ");
+                visited.set(source, true);
+            }
+             
+            // Get all the adjacent vertices of the popped vertex source.
+            // If an adjacent has not been visited, then push it to the stack.
+            Iterator<Integer> itr = list[source].iterator();
+             
+            while (itr.hasNext())
+            {
+                int vertex = itr.next();
+                
+                if(!visited.get(vertex))
+                {
+                	stack.push(vertex);
+                }
+                    
+            }
+             
+        }
+    }
 }
