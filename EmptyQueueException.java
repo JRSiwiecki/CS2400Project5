@@ -4,7 +4,7 @@
  *
  */
 @SuppressWarnings("serial")
-public class EmptyQueueException extends Exception
+public class EmptyQueueException extends RuntimeException
 {
 	public EmptyQueueException()
 	{
