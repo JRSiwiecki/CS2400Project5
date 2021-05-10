@@ -7,18 +7,42 @@ public class Driver
 {
 	public static void main(String[] args)
 	{
-		Graph g = new Graph(4);
+		Graph graph = new Graph(9);
 		 
-        g.addEdge(0, 1);
-        g.addEdge(0, 2);
-        g.addEdge(1, 2);
-        g.addEdge(2, 0);
-        g.addEdge(2, 3);
-        g.addEdge(3, 3);
+        /*
+         * I used numbers instead, sorry!
+         * A = 0
+         * B = 1
+         * C = 2
+         * D = 3
+         * E = 4
+         * F = 5
+         * G = 6
+         * H = 7
+         * I = 8
+         */
+		
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 3);
+		graph.addEdge(0, 4);
+		graph.addEdge(1, 4);
+		graph.addEdge(2, 1);
+		graph.addEdge(3, 6);
+		graph.addEdge(4, 5);
+		graph.addEdge(4, 7);
+		graph.addEdge(5, 2);
+		graph.addEdge(5, 7);
+		graph.addEdge(6, 7);
+		graph.addEdge(7, 8);
+		graph.addEdge(8,5);
+        
  
-        System.out.println("Following is Breadth First Traversal "+
-                           "(starting from vertex 2)");
+        System.out.println("Following is Breadth First Traversal of the graph starting from A/0: ");
  
-        g.BreadthFirstTraversal(2);
+        graph.BreadthFirstTraversal(0);
+        
+        System.out.println("\n\nFollowing is Depth First Traversal of the graph starting from A/0: ");
+        
+        graph.DepthFirstTraversal(0);
 	}
 }
