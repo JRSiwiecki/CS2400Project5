@@ -18,22 +18,12 @@ public final class LinkedStack<T> implements StackInterface<T>
         topNode = null;
     } 
 
-    /**
-     * Adds an object to the stack.
-     *
-     * @param newEntry An object to be added to the stack.
-     */
     public void push(T newEntry)
     {
         Node newNode = new Node(newEntry, topNode);
         topNode = newNode;
     } 
 
-    /**
-     * Shows what is on the top of the stack.
-     *
-     * @return returns the object at the top of the stack
-     */
     public T peek()
     {
         if (isEmpty())
@@ -42,11 +32,6 @@ public final class LinkedStack<T> implements StackInterface<T>
             return topNode.getData();
     } 
 
-    /**
-     * removes the object at the top of the stack.
-     *
-     * @return returns the object at the top of the stack
-     */
     public T pop()
     {
         T top = peek(); // Might throw EmptyStackException
@@ -55,19 +40,11 @@ public final class LinkedStack<T> implements StackInterface<T>
         return top;
     } 
 
-    /**
-     * Checks whether the stack is empty or not.
-     *
-     * @return returns a boolean value about whether stack is empty or not
-     */
     public boolean isEmpty()
     {
         return topNode == null;
     } 
 
-    /**
-     * Clears the stack by setting topNode pointer to null.
-     */
     public void clear()
     {
         topNode = null;
